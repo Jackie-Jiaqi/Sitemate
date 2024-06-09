@@ -5,7 +5,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-const port = 3000;
+const port = 3001;
 let issues = [
   { id: 1, title: "issues1", description: "issues1 description" },
   { id: 2, title: "issues2", description: "issues2 description" },
@@ -19,16 +19,22 @@ app.post("/api/issues", (req, res) => {
   res.status(201).json(issue);
 });
 
-// Read
+// Read (single issue)
 app.get("/api/issues/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const issue = issues.find((issue) => issue.id === id);
+  const id = parseInt(req.params.id, 10);
+  const issue = issues.filter((issue) => issue.id === id);
+  console.log(issues, "issue");
   res.json(issue);
+});
+
+// Read (all issues)
+app.get("/api/issues/", (req, res) => {
+  res.json(issues);
 });
 
 // Update
 app.put("/api/issues/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   const updatedIssue = req.body;
   console.log("Updated issue:", updatedIssue);
   issues = issues.map((issue) => (issue.id === id ? updatedIssue : issue));
@@ -37,7 +43,7 @@ app.put("/api/issues/:id", (req, res) => {
 
 // Delete
 app.delete("/api/issues/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   console.log("Deleted issue with id:", id);
   issues = issues.filter((issue) => issue.id !== id);
   res.status(204).send();
