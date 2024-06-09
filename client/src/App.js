@@ -6,7 +6,7 @@ import {
   updateIssue,
   deleteIssue,
 } from "./ApiClient";
-
+import "./App.css";
 function App() {
   const [issue, setIssue] = useState({ id: "", title: "", description: "" });
   const [result, setResult] = useState([]);
@@ -104,8 +104,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Issue Tracker</h1>
+    <div className="container">
+      <h1>Issue API</h1>
       <input
         type="text"
         name="id"
