@@ -16,7 +16,6 @@ function App() {
     const fetchIssues = async () => {
       try {
         const issues = await getAllIssues();
-        console.log(issues);
         setResult(issues);
       } catch (error) {
         console.error("Error fetching issues:", error);

@@ -9,13 +9,11 @@ export const createIssue = async (issue) => {
 
 export const getIssue = async (id) => {
   const response = await axios.get(`${API_URL}/${id}`);
-  console.log(response.data, "sss");
   return response.data;
 };
 
 export const getAllIssues = async () => {
   const response = await axios.get(`${API_URL}/`);
-  console.log(response.data, "all");
   return response.data;
 };
 
